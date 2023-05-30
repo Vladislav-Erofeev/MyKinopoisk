@@ -1,6 +1,5 @@
 package com.example.kinopoisk.genre;
 
-import com.example.kinopoisk.movie.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,7 @@ public class GenreService {
 
     public Genre getById(Long id) throws GenreNotFoundException {
         Optional<Genre> optionalGenre = genreRepository.findById(id);
-        if(optionalGenre.isEmpty())
+        if (optionalGenre.isEmpty())
             throw new GenreNotFoundException("Genre with id=" + id + " not found");
         return optionalGenre.get();
     }

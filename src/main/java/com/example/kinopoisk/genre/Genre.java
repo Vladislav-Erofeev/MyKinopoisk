@@ -18,8 +18,8 @@ public class Genre {
 
     @ManyToMany
     @JoinTable(name = "movie_genre",
-    joinColumns = @JoinColumn(name = "genre_id"),
-    inverseJoinColumns = @JoinColumn(name = "movie_id"))
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Movie> movieList;
 
     public void addMovie(Movie movie) {
