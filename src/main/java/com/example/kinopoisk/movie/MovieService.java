@@ -24,6 +24,13 @@ public class MovieService {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         if (optionalMovie.isEmpty())
             throw new MovieNotFoundException("Movie with id=" + id + " not found");
-        return optionalMovie.get();
+        Movie movie = optionalMovie.get();
+        movie.setViews(movie.getViews() + 1);
+        return movie;
+    }
+
+    public List<Movie> getAll(int page, int size) {
+        return movieRepository.findAll(PageRequest.of(page, size, Sort.by("views").descending()))
+                .getContent();
     }
 }
