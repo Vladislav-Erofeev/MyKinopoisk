@@ -12,14 +12,14 @@ import java.util.List;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String name;
 
     @ManyToMany
     @JoinTable(name = "movie_genre",
-    joinColumns = @JoinColumn(name = "genre_id"),
-    inverseJoinColumns = @JoinColumn(name = "movie_id"))
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Movie> movieList;
 
     public void addMovie(Movie movie) {
