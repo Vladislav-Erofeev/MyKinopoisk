@@ -5,7 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface MovieMapper {
-    public MovieMapper INSTANCE = Mappers.getMapper(MovieMapper.class);
+    MovieMapper INSTANCE = Mappers.getMapper(MovieMapper.class);
 
     MovieListItemDTO convertMovieToMovieListItemDTO(Movie movie);
 }
