@@ -28,20 +28,24 @@ public class PostController {
     }
 
     @PostMapping("/add")
-    public void saveNewPost(@RequestBody NewPostDTO newPostDTO) throws PostAlreadyExistException {
+    public HttpStatus saveNewPost(@RequestBody NewPostDTO newPostDTO) throws PostAlreadyExistException {
         postService.save(postMapper.convertNewPostDTOToPost(newPostDTO));
+        return HttpStatus.OK;
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable("id") long id) {
+    public HttpStatus deleteById(@PathVariable("id") long id) {
         postService.delete(id);
+        return HttpStatus.OK;
     }
 
     @PatchMapping("/edit/{id}")
-    public void edit(@PathVariable("id") long id, @RequestBody NewPostDTO newPostDTO) throws PostAlreadyExistException {
+    public HttpStatus edit(@PathVariable("id") long id, @RequestBody NewPostDTO newPostDTO)
+            throws PostAlreadyExistException {
         Post post = postMapper.convertNewPostDTOToPost(newPostDTO);
         post.setId(id);
         postService.save(post);
+        return HttpStatus.OK;
     }
 
     @ExceptionHandler

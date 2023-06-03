@@ -1,11 +1,10 @@
 package com.example.kinopoisk.genre;
 
-import com.example.kinopoisk.movie.Movie;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
-
-import java.util.LinkedList;
-import java.util.List;
 
 @Data
 @Entity
@@ -15,16 +14,4 @@ public class Genre {
     private long id;
 
     private String name;
-
-    @ManyToMany
-    @JoinTable(name = "movie_genre",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    private List<Movie> movieList;
-
-    public void addMovie(Movie movie) {
-        if (movieList == null)
-            movieList = new LinkedList<>();
-        movieList.add(movie);
-    }
 }

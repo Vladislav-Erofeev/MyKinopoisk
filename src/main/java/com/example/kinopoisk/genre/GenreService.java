@@ -25,7 +25,9 @@ public class GenreService {
     }
 
     @Transactional
-    public void save(Genre genre) {
+    public void save(Genre genre) throws GenreAlreadyExistException {
+        if (genreRepository.findByNameContainingIgnoreCase(genre.getName()).isPresent())
+            throw new GenreAlreadyExistException("Genre with name=" + genre.getName() + " already exist");
         genreRepository.save(genre);
     }
 
